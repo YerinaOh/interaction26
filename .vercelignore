@@ -1,0 +1,7 @@
+# 배포에 올리지 않는 파일. API 키는 Vercel 환경 변수로 따로 넣는다.
+.env*.local
+.env
+node_modules
+.next
+reports
+*.pptx

@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+/* 디자인 토큰: 밝은 회색 바탕 + 흰 카드 + 포인트 색 하나 */
+@theme {
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+
+  --color-canvas: #f2f4f6; /* 카드가 놓이는 화면 바탕 */
+  --color-surface: #ffffff;
+  --color-field: #f2f4f6; /* 입력칸·비선택 버튼 바탕 */
+  --color-ink: #191f28; /* 본문 */
+  --color-ink-2: #4e5968; /* 보조 본문 */
+  --color-muted: #8b95a1; /* 설명·라벨 */
+  --color-line: #e5e8eb;
+  --color-accent: #3366ff;
+  --color-accent-strong: #1f4fe0;
+  --color-accent-soft: #edf2ff;
+  --color-danger: #f04452;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    /* 더블탭 확대로 인한 탭 지연을 없앤다 (핀치 확대는 유지) */
+    touch-action: manipulation;
+  }
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    word-break: keep-all;
+    letter-spacing: -0.01em;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@layer utilities {
+  /* 생성 대기 화면의 스켈레톤 줄 */
+  .skeleton {
+    background: linear-gradient(90deg, #eef0f3 25%, #f7f8fa 50%, #eef0f3 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s ease-in-out infinite;
+  }
+  /* 화면 전환 시 살짝 떠오르는 등장 */
+  .enter {
+    animation: enter 0.28s ease-out both;
+  }
+  @keyframes enter {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .skeleton,
+    .enter {
+      animation: none;
+    }
+  }
+}

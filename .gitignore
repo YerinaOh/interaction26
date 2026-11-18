@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+.env*.local
+.DS_Store
+.vercel
+.env*
+!.env.example
+
+# 참가자 응답 내보내기 (npm run export:sessions) — 개인 응답 데이터라 올리지 않는다
+reports/export-*/
